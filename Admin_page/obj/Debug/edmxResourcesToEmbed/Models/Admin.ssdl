@@ -1,0 +1,131 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Freshers_Training2022Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'Freshers_Training2022.dbo.MM_Admin' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MM_Admin">
+    <Key>
+      <PropertyRef Name="Username" />
+      <PropertyRef Name="Password" />
+    </Key>
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MM_Carts">
+    <Key>
+      <PropertyRef Name="CartId" />
+    </Key>
+    <Property Name="CartId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UserId" Type="int" />
+  </EntityType>
+  <EntityType Name="MM_Categories">
+    <Key>
+      <PropertyRef Name="CategoryId" />
+    </Key>
+    <Property Name="CategoryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MM_Contact">
+    <Key>
+      <PropertyRef Name="ContactId" />
+    </Key>
+    <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Subject" Type="varchar" MaxLength="200" />
+    <Property Name="Message" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MM_Orders">
+    <Key>
+      <PropertyRef Name="OrderDetailsid" />
+    </Key>
+    <Property Name="OrderDetailsid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderNo" Type="varchar(max)" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+    <Property Name="PaymentId" Type="int" />
+    <Property Name="OrderDate" Type="datetime" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="MM_Payment">
+    <Key>
+      <PropertyRef Name="PaymentId" />
+    </Key>
+    <Property Name="PaymentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="CardNo" Type="varchar" MaxLength="50" />
+    <Property Name="ExpiryDate" Type="varchar" MaxLength="50" />
+    <Property Name="CvvNo" Type="int" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="PaymentMode" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MM_Products">
+    <Key>
+      <PropertyRef Name="ProductId" />
+    </Key>
+    <Property Name="ProductId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="ImageUrl" Type="varchar(max)" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MM_User">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
+    <Property Name="Mobile" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="PostCode" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="ImageUrl" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_MM_Products_MM_Categories">
+    <End Role="MM_Categories" Type="Self.MM_Categories" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="MM_Products" Type="Self.MM_Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MM_Categories">
+        <PropertyRef Name="CategoryId" />
+      </Principal>
+      <Dependent Role="MM_Products">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Freshers_Training2022ModelStoreContainer">
+    <EntitySet Name="MM_Carts" EntityType="Self.MM_Carts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Categories" EntityType="Self.MM_Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Contact" EntityType="Self.MM_Contact" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Orders" EntityType="Self.MM_Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Payment" EntityType="Self.MM_Payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Products" EntityType="Self.MM_Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_User" EntityType="Self.MM_User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MM_Admin" EntityType="Self.MM_Admin" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MM_Admin].[Username] AS [Username], 
+    [MM_Admin].[Password] AS [Password]
+    FROM [dbo].[MM_Admin] AS [MM_Admin]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_MM_Products_MM_Categories" Association="Self.FK_MM_Products_MM_Categories">
+      <End Role="MM_Categories" EntitySet="MM_Categories" />
+      <End Role="MM_Products" EntitySet="MM_Products" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

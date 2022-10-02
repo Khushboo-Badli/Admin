@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<div class="header">
+    <h3>Dashboard</h3>
+    
+</div>*@
+<div class="row1-container">
+    <div class="box box-down cyan">
+        <h2>Users</h2>
+        <p>Let's see Users List</p>
+        <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
+        @Html.ActionLink("Let's GO", "Index", "User", null, new { @class = "btn btn-info" } )
+       
+    </div>
+
+    <div class="box red">
+        <h2>Orders</h2>
+        <p>Let's see Orders List</p>
+        <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+        @Html.ActionLink("Let's GO", "Index", "Orders", null, new { @class = "btn btn-danger" })
+       
+    </div>
+
+    <div class="box box-down blue">
+        <h2>Product</h2>
+        <p>Customize Menu of Meal Monkey</p>
+        <img src="https://assets.codepen.io/2301174/icon-calculator.svg" alt="">
+        @Html.ActionLink("Let's GO", "Index", "Products",null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<div class="row2-container">
+    <div class="box orange">
+        <h2>Categories</h2>
+        <p>Add some Delicious Cuisines</p>
+        <img src="https://assets.codepen.io/2301174/icon-karma.svg" alt="">
+        @Html.ActionLink("Let's GO", "Index", "Categories",null, new { @class = "btn btn-warning" })
+    </div>
+</div>
